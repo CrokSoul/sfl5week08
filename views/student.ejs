@@ -1,48 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details</title>
-    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="page">
-        <div class="container small-container">
-            <div class="card">
-                <h1>Student Details</h1>
-                <p class="subtitle">View detailed information</p>
-
-                <div class="details-box">
-                    <div class="detail-row">
-                        <span class="detail-label">ID</span>
-                        <span class="detail-value"><%= student._id %></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Name</span>
-                        <span class="detail-value"><%= student.name %></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Age</span>
-                        <span class="detail-value"><%= student.age %></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Course</span>
-                        <span class="detail-value"><%= student.course %></span>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <a href="/student/<%= student._id %>/edit" class="btn btn-warning">Edit</a>
-
-                    <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-
-                    <a href="/students" class="btn btn-secondary">Back</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Student Details</h1>
+    <p>ID: <%= student._id %>
+    </p>
+    <p>Name: <%= student.name %>
+    </p>
+    <p>Age: <%= student.age %>
+    </p>
+    <p>Course: <%= student.course %>
+    </p>
+    <a href="/student/<%= student._id %>/edit">Edit</a>
+    <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+    <br>
+    <a href="/students">Back to List</a>
 </body>
 </html>
