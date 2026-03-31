@@ -1,23 +1,54 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Students List</title>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <div class="top-bar">
+                <div>
+                    <h1>Student Management System</h1>
+                    <p class="subtitle">Manage student records easily and clearly.</p>
+                </div>
+                <a href="/student/new" class="btn btn-primary">+ Add Student</a>
+            </div>
 
-    <body>
-        <h1>Students List</h1>
-        <ul>
-            <% students.forEach(student=> { %>
-                <li><a href="/student/<%= student._id %>">
-                        <%= student.name %> - <%= student.course %>
-                    </a></li>
-                <% }) %>
-        </ul>
-        <a href="/student/new">Add a New Student</a>
-    </body>
+            <div class="card">
+                <% if (students.length === 0) { %>
+                    <div class="empty-state">
+                        <h2>No students found</h2>
+                        <p>Start by adding your first student.</p>
+                        <a href="/student/new" class="btn btn-primary">Add Student</a>
+                    </div>
+                <% } else { %>
+                    <div class="student-grid">
+                        <% students.forEach(student => { %>
+                            <div class="student-card">
+                                <div class="student-card-header">
+                                    <h2><%= student.name %></h2>
+                                    <span class="badge"><%= student.course %></span>
+                                </div>
 
-    </html>
+                                <p><strong>Age:</strong> <%= student.age %></p>
+                                <p><strong>ID:</strong> <%= student._id %></p>
 
-    
+                                <div class="actions">
+                                    <a href="/student/<%= student._id %>" class="btn btn-secondary">View</a>
+                                    <a href="/student/<%= student._id %>/edit" class="btn btn-warning">Edit</a>
+                                    <form action="/student/<%= student._id %>?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
